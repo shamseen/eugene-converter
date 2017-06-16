@@ -1,12 +1,21 @@
 package org.cidarlab_EugeneConverter.econverter;
 
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import org.sbolstandard.core2.SBOLConversionException;
+import org.sbolstandard.core2.SBOLDocument;
+import org.sbolstandard.core2.SBOLValidate;
+import org.sbolstandard.core2.SBOLValidationException;
+import org.sbolstandard.core2.SBOLWriter;
 import org.adaptor.SynBioHubAdaptor;
 import org.synbiohub.frontend.SynBioHubException;
 
-/**
- * Hello world!
- *
- */
+
 public class SBOLConverter 
 {
 	private SynBioHubAdaptor instance; //connection to symbiohub db
