@@ -14,9 +14,19 @@ public class Device {
 		GenerateSequence(parts);
 	}
 	
+	
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
+
+
+
 	private void GenerateSequence(List<Part> parts){
 		for (Part p : parts){
-			Sequence += p.Sequence;
+			Sequence += p.sequence;
 		}
 	}
 }
