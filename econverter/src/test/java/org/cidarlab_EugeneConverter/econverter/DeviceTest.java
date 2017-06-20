@@ -8,10 +8,13 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.*;
-import org.hamcrest.Matcher;
+//import org.hamcrest.Matcher;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 
 import org.cidarlab_EugeneConverter.econverter.dom.Part;
 import org.cidarlab_EugeneConverter.econverter.dom.PartType;
+import org.hamcrest.Matchers;
 import org.sbolstandard.core2.ComponentDefinition;
 import org.sbolstandard.core2.SBOLDocument;
 import org.sbolstandard.core2.SBOLValidationException;
@@ -45,7 +48,7 @@ public class DeviceTest {
 	public void ConverterReturnsSBOLComponents() throws SBOLValidationException{
 		//setup
 		SBOLDocument doc = new SBOLDocument();
-		//List<ComponentDefinition> retVal = new ArrayList<ComponentDefinition>();
+		
 		
 		
 		doc.setDefaultURIprefix("https://www.cidarlab.org/owl/Synbiohub_Demo/");
@@ -60,8 +63,12 @@ public class DeviceTest {
 		
 		List<ComponentDefinition> retVal = Lists.newArrayList(doc.getComponentDefinitions());
 		
-		//test
-		//assert(doc.getComponentDefinitions())
+		//test		
+		assert(retVal.size() == Parts.size());
+
+		for(Part p : Parts){
+			assertThat(retVal, contains(Matchers.hasProperty("displayId", is(p.name))));
+		};
 		
 	}
 }
