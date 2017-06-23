@@ -33,7 +33,7 @@ public class DeviceTest {
 	public void setUp() {
         instance = new SynBioHubAdaptor("https://synbiohub.programmingbiology.org/");
         try {
-			instance.login("shamseen@bu.edu", "cidarlab");
+			instance.login("yvi1@bu.edu", "cidarlab");
 		} catch (SynBioHubException e) {
 			e.printStackTrace();
 		}
@@ -50,7 +50,6 @@ public class DeviceTest {
 		SBOLDocument doc = new SBOLDocument();
 		
 		
-		
 		doc.setDefaultURIprefix("https://www.cidarlab.org/owl/Synbiohub_Demo/");
 		doc.setComplete(true);
 		doc.setCreateDefaults(true);
@@ -62,13 +61,19 @@ public class DeviceTest {
 		}
 		
 		List<ComponentDefinition> retVal = Lists.newArrayList(doc.getComponentDefinitions());
+		String seq = retVal.get(0).getSequences().iterator().next().getElements();
 		
 		//test		
 		assert(retVal.size() == Parts.size());
 
 		for(Part p : Parts){
 			assertThat(retVal, contains(Matchers.hasProperty("displayId", is(p.name))));
+			assert(seq.contains(p.sequence));
 		};
+		
+		public void ConverterReturnsSBOLComponents() throws SBOLValidationException{
+			
+		}
 		
 	}
 }

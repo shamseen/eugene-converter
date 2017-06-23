@@ -20,10 +20,11 @@ public class SBOLConverter
 	public static SBOLDocument convertPartToComponent(Part part, SBOLDocument doc) throws SBOLValidationException 
 	{
 		String version = "1.0";
-		doc.createSequence(part.name+"_seq", version, part.sequence, Sequence.IUPAC_DNA);
 		
+		Sequence s = doc.createSequence(part.name+"_seq", version, part.sequence, Sequence.IUPAC_DNA);		
 		
-		doc.createComponentDefinition(part.name, version, part.sequence, ComponentDefinition.DNA);
+		doc.createComponentDefinition(part.name, version, ComponentDefinition.DNA);
+		doc.getComponentDefinition(part.name, version).addSequence(s);
 		
 		switch (part.partType){
 		case GENE: doc.getComponentDefinition(part.name, version).addRole(SequenceOntology.GENE); break;
